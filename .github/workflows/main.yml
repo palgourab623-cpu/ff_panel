@@ -18,6 +18,14 @@ jobs:
       with:
         flutter-version: '3.19.0'
 
+    - name: Create flutter project if missing
+      run: |
+        if [ ! -d "android" ]; then
+          flutter create .
+        else
+          echo "android folder exists"
+        fi
+
     - name: Install dependencies
       run: flutter pub get
 
@@ -25,7 +33,7 @@ jobs:
       run: flutter build apk --release
 
     - name: Upload APK
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ff_panel_app
         path: build/app/outputs/flutter-apk/app-release.apk
