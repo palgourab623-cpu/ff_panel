@@ -1,57 +1,48 @@
 import 'package:flutter/material.dart';
 
 class HeadshotPage extends StatelessWidget {
-  const HeadshotPage({super.key});
+  const HeadshotPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
       appBar: AppBar(
-        title: const Text("FF Headshot Panel"),
-        backgroundColor: Colors.red,
+        title: const Text('FF Headshot Panel'),
+        centerTitle: true,
       ),
-
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-
-            settingBox("General Sensitivity", "92"),
-            const SizedBox(height: 10),
-
-            settingBox("Red Dot Sensitivity", "85"),
-            const SizedBox(height: 10),
-
-            settingBox("2X Scope Sensitivity", "78"),
-            const SizedBox(height: 10),
-
-            settingBox("4X Scope Sensitivity", "72"),
-            const SizedBox(height: 10),
-
-            settingBox("Sniper Sensitivity", "65"),
-            const SizedBox(height: 10),
-
-            settingBox("Best DPI", "460 DPI"),
-            const SizedBox(height: 10),
-
-            settingBox("Aim Lock Settings", "High +"),
-          ],
-        ),
+      body: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          const Text(
+            'Best Headshot Settings',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 16),
+          settingBox('Sensitivity', '95'),
+          settingBox('DPI', '600'),
+          settingBox('General', '100'),
+          settingBox('Red Dot', '90'),
+          settingBox('Scope', '80'),
+        ],
       ),
     );
   }
 
   Widget settingBox(String title, String value) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: Colors.white10,
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: Colors.red, width: 1),
+    return Card(
+      margin: const EdgeInsets.symmetric(vertical: 6),
+      child: ListTile(
+        title: Text(title),
+        trailing: Text(
+          value,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.
-        
+    );
+  }
+}
